@@ -1,0 +1,41 @@
+.cityBox {
+	backdrop-filter: blur(20px);
+	background: rgba(0, 0, 0, 0.433);
+	border-radius: 6px;
+	color: #ddd;
+	width: 85%;
+	cursor: pointer;
+	margin: auto;
+	margin-bottom: 20px;
+	height: 55px;
+	padding: 8px 12px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.cityName {
+	font-size: 18px;
+	font-weight: 500;
+	text-transform: capitalize;
+}
+
+.tempBox {
+	font-size: 14px;
+	display: flex;
+	align-items: end;
+	justify-content: center;
+	color: #777;
+}
+
+.tempBox img {
+	width: 40px;
+	height: 40px;
+}
+
+.tempBox span {
+	margin-left: 10px;
+	font-size: 24px;
+	font-weight: 600;
+	color: #ddd;
+}

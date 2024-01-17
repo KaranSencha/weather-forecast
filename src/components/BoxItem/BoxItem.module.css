@@ -1,0 +1,115 @@
+.box {
+	width: 40%;
+	border-radius: 12px;
+	background-color: #ccc;
+	color: #222;
+	border: 2px solid #666;
+	padding: 10px 20px;
+}
+
+.heading {
+	display: flex;
+	justify-content: space-between;
+	margin: 4px 0 6px;
+}
+
+.heading img {
+	width: 35px;
+	margin-right: 40%;
+}
+
+.box h3 {
+	font-size: 1.35rem;
+	font-weight: 600;
+}
+
+.box p {
+	display: flex;
+	justify-content: space-between;
+	padding: 4px;
+	border-bottom: 2px solid #777;
+	font-size: 1.15rem;
+}
+
+@media only screen and (max-width: 1100px) {
+	.heading img {
+		margin-right: 10%;
+		margin-top: -7px;
+	}
+}
+
+/* laptop */
+@media only screen and (max-width: 1000px) {
+	.box {
+		width: 46%;
+	}
+}
+
+/* Tablet wide size */
+@media only screen and (max-width: 950px) {
+	.box {
+		width: 48%;
+	}
+
+	.heading img {
+		width: 30px;
+	}
+}
+
+/* Tablet wide size */
+@media only screen and (max-width: 670px) {
+	.box {
+		border-radius: 10px;
+		padding: 10px 10px;
+	}
+
+	.heading img {
+		margin-right: 2%;
+		margin-top: -7px;
+	}
+}
+
+/* Tablet wide size */
+@media only screen and (max-width: 560px) {
+	.box {
+		width: 90%;
+		border-radius: 10px;
+		padding: 10px 20px;
+		font-size: 27px;
+	}
+
+	.heading img {
+		margin-right: 30%;
+		margin-top: 0px;
+	}
+
+	.box h3 {
+		font-size: 1.4rem;
+		font-weight: 600;
+	}
+
+	.box p {
+		font-size: 1.24rem;
+	}
+}
+
+/* Tablet wide size */
+@media only screen and (max-width: 500px) {
+.box {
+		width: 95%;
+		border-radius: 10px;
+		padding: 10px 20px;
+	}
+
+	.heading img {
+		margin-right: 30%;
+		margin-top: 0px;
+	}
+}
+
+@media only screen and (max-width: 440px) {
+	.heading img {
+		margin-right: 10%;
+		margin-top: -7px;
+	}
+}

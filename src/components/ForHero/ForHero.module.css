@@ -1,0 +1,166 @@
+.heroBox {
+
+	border-radius: 10px;
+	width: 80%;
+	margin: auto;
+	overflow-x: hidden;
+}
+
+.top {
+	width: 100%;
+	display: flex;
+	min-height: 200px;
+}
+
+.bottom {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	backdrop-filter: blur(10px);
+	background: rgba(255, 255, 255, 0.34);
+	justify-content: space-around;
+	gap: 20px 30px;
+	padding: 20px;
+}
+
+
+.tempBox {
+	backdrop-filter: blur(10px);
+	background: rgba(255, 255, 255, 0.445);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+}
+
+.tempBox div {
+	font-size: 75px;
+	font-weight: 600;
+	text-align: center;
+	color: #111;
+
+
+}
+
+.tempBox span {
+	font-size: 20px;
+	color: #222;
+}
+
+.tempBox sup {
+	font-size: 45px;
+}
+
+.imgBox {
+	width: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 0px;
+	background-color: #151522;
+}
+
+.cloudText {
+	font-weight: 500;
+	font-size: 30px;
+	text-align: center;
+	color: #ccc;
+}
+
+.top img {
+	width: 120px;
+	height: 120px;
+}
+
+.valueBox {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 22%;
+	border-radius: 8px;
+	background-color: #ccc;
+	color: #222;
+	border: 2px solid #666;
+	padding: 10px 20px;
+}
+
+.value {
+	font-size: 26px;
+	font-weight: 500;
+}
+
+.valueName {
+	font-size: 18px;
+}
+
+/* Responsive Styles for Tablet */
+
+
+@media only screen and (max-width: 1024px) {
+	.valueBox{
+		width: 30%;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.heroBox {
+		width: 90%;
+	}
+
+	.bottom {
+		gap: 20px 10px;
+	}
+		.valueBox {
+			width: 30%;
+			padding: 10px 0;
+		}
+
+}
+
+@media only screen and (max-width: 600px) {
+.bottom {
+		gap: 20px 20px;
+	}
+
+	.valueBox {
+		width: 45%;
+		padding: 10px 0;
+	}
+}
+@media only screen and (max-width: 520px) {
+
+	.top {
+		flex-direction: column;
+	}
+
+	.tempBox {
+		width: 100%;
+min-height: 200px;
+	}
+
+	.imgBox {
+		width: 100%;
+		min-height: 200px;
+	}
+
+.bottom {
+		gap: 20px 20px;
+	}
+
+	.valueBox {
+		width: 46%;
+		padding: 10px;
+	}
+}
+
+@media only screen and (max-width: 450px) {
+.bottom {
+		gap: 10px;
+	}
+
+	.valueBox {
+		width: 97%;
+		padding: 10px;
+	}
+}

@@ -1,0 +1,55 @@
+/* Aside  */
+aside {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	padding: 20px 0;
+	background-color: #202020;
+	background-color: #333;
+	height: calc(100vh - 70px);
+	width: 320px;
+	z-index: 99;
+	transition: all 0.5s ease-in-out;
+}
+
+.hideMenu {
+	left: -320px;
+}
+
+aside a {
+	display: block;
+	width: 100%;
+	padding: 10px 30px;
+	font-size: 18px;
+	color: #ddd;
+	text-decoration: none;
+	border-left: 4px solid transparent;
+	margin-bottom: 18px;
+}
+
+aside a:hover {
+	background-color: #454545;
+}
+
+aside img {
+	width: 40px;
+	height: 40px;
+
+}
+
+/* Main  */
+main {
+	position: absolute;
+	right: 0;
+	top: 70px;
+	background-color: transparent;
+	overflow: hidden;
+	overflow-y: auto;
+	width: calc(100vw - 320px);
+	transition: all 0.5s ease-in-out;
+}
+
+
+.expandMain {
+	width: 100vw;
+}
