@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ForHero.module.css";
-import allCloudCondition from "../../assets/CloudCondition/allCloudCondition";
+import allCloudCondition from "../../assets/data/allCloudCondition";
 
 function ForHero({ temp, tempValues, code, values }) {
   const [imgUrl, setImgUrl] = useState("");

@@ -2,14 +2,15 @@ import React, {useState, useEffect} from 'react'
 import apiKey from '../../helpers/apiKey';
 import airQuality from '../../helpers/airQuality';
 import City from "../City/City";
-import defaultCities from "../../assets/defaultCities";
+import defaultCities from "../../assets/data/defaultCities";
 import Hero from "../Hero/Hero";
 import BoxItem from "../BoxItem/BoxItem";
-import sun_icon from "../../assets/sun.svg";
-import moon_icon from "../../assets/moon.svg";
-import rain_icon from "../../assets/rain.svg";
-import wind_icon from "../../assets/wind.svg";
-import speed_icon from "../../assets/speedometer.svg";
+import sun_gif from "../../assets/gif/sun.gif";
+import air_gif from "../../assets/gif/air-quality.gif";
+import moon_gif from "../../assets/gif/moon.gif";
+import rain_gif from "../../assets/gif/rain.gif";
+import wind_gif from "../../assets/gif/wind.gif";
+import speed_gif from "../../assets/gif/speed.gif";
 
 function Current({onCitySubmit, city}) {
   const [citiesData, setCitiesData] = useState([]);
@@ -128,7 +129,7 @@ function Current({onCitySubmit, city}) {
           <div className="boxItemContainer">
             <BoxItem
               heading="Air Quality"
-              imgId={wind_icon}
+              imgId={air_gif}
               values={[
                 {
                   property: "Air",
@@ -149,7 +150,7 @@ function Current({onCitySubmit, city}) {
 
             <BoxItem
               heading="Rain Chance"
-              imgId={rain_icon}
+              imgId={rain_gif}
               values={[
                 {
                   property: "Rain Chance",
@@ -164,7 +165,7 @@ function Current({onCitySubmit, city}) {
             />
             <BoxItem
               heading="Sun Timing"
-              imgId={sun_icon}
+              imgId={sun_gif}
               values={[
                 { property: "Rise", value: weather.forecast.forecastday[0].astro.sunrise },
                 { property: "Set", value: weather.forecast.forecastday[0].astro.sunset },
@@ -172,7 +173,7 @@ function Current({onCitySubmit, city}) {
             />
             <BoxItem
               heading="Moon Timing"
-              imgId={moon_icon}
+              imgId={moon_gif}
               values={[
                 { property: "Rise", value: weather.forecast.forecastday[0].astro.moonrise },
                 { property: "Set", value: weather.forecast.forecastday[0].astro.moonset },
@@ -180,7 +181,7 @@ function Current({onCitySubmit, city}) {
             />
             <BoxItem
               heading="Wind"
-              imgId={wind_icon}
+              imgId={wind_gif}
               values={[
                 { property: "Speed", value: `${weather.current.wind_kph} km/h` },
                 { property: "Direction", value: weather.current.wind_dir },
@@ -189,7 +190,7 @@ function Current({onCitySubmit, city}) {
             />
             <BoxItem
               heading="Other"
-              imgId={speed_icon}
+              imgId={speed_gif}
               values={[
                 { property: "Pressure", value: `${weather.current.pressure_in} inch` },
                 { property: "UV", value: weather.current.uv },

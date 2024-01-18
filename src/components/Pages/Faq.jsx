@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import allFaqs from "../../assets/allFaq";
+import allFaqs from "../../assets/data/allFaq";
 
 function Faq() {
   const [expandedItems, setExpandedItems] = useState({});

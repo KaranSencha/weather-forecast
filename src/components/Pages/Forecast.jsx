@@ -4,10 +4,10 @@ import airQuality from "../../helpers/airQuality";
 import dateBuilder from "../../helpers/dateBuilder";
 import ForHero from "../ForHero/ForHero";
 import BoxItem from "../BoxItem/BoxItem";
-import sun_icon from "../../assets/sun.svg";
-import moon_icon from "../../assets/moon.svg";
-import rain_icon from "../../assets/rain.svg";
-import wind_icon from "../../assets/wind.svg";
+import sun_gif from "../../assets/gif/sun.gif";
+import moon_gif from "../../assets/gif/moon.gif";
+import rain_gif from "../../assets/gif/rain.gif";
+import wind_gif from "../../assets/gif/wind.gif";
 
 function Forecast({ city }) {
   const [weather, setWeather] = useState({});
@@ -120,7 +120,7 @@ function Forecast({ city }) {
       <div className="boxItemContainer">
         <BoxItem
           heading="Air Quality"
-          imgId={wind_icon}
+          imgId={wind_gif}
           values={[
             { property: "CO", value: `${parseInt(forecastData?.day?.air_quality.co)} μg/m3` },
             { property: "O₃", value: `${parseInt(forecastData?.day?.air_quality.o3)} μg/m3` },
@@ -130,7 +130,7 @@ function Forecast({ city }) {
 
         <BoxItem
           heading="Rain Chance"
-          imgId={rain_icon}
+          imgId={rain_gif}
           values={[
             {
               property: "Rain Chance",
@@ -146,7 +146,7 @@ function Forecast({ city }) {
 
         <BoxItem
           heading="Sun Timing"
-          imgId={sun_icon}
+          imgId={sun_gif}
           values={[
             { property: "Rise", value: forecastData?.astro?.sunrise },
             { property: "Set", value: forecastData?.astro?.sunset },
@@ -154,7 +154,7 @@ function Forecast({ city }) {
         />
         <BoxItem
           heading="Moon Timing"
-          imgId={moon_icon}
+          imgId={moon_gif}
           values={[
             { property: "Rise", value: forecastData?.astro?.moonrise },
             { property: "Set", value: forecastData?.astro?.moonset },

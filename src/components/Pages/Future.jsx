@@ -12,37 +12,43 @@ function Future({ city }) {
   const [loading, setLoading] = useState(true);
   const tomorrow = new Date(new Date());
   tomorrow.setDate(new Date().getDate() + 14);
+
   const [selectedDate, setSelectedDate] = useState(dateFormater(tomorrow));
-  const [formatedDate, setFormatedDate] = useState("");
   const [searchData, setSearchData] = useState(true);
 
-	// let minimumDate = dateFormater();
-	// let maximumDate = dateFormater(tomorrow);
+  const minDate = dateFormater(tomorrow);
+  const maxDate = dateFormater(new Date(new Date()).setDate(new Date().getDate() + 300));
+
 	
   // Input Cities Api Call
-  useEffect(() => {
-    if (city !== "") {
-      setLoading(true);
+useEffect(() => {
+  if (city !== "") {
+    setLoading(true);
+
+    try {
       fetch(
         `https://api.weatherapi.com/v1/future.json?key=${apiKey}&q=${city}&dt=${selectedDate}&hour=0`
-			)
+      )
         .then((response) => response.json())
         .then((response) => {
           setLoading(false);
           console.log(response);
           setHistoryData(response.forecast.forecastday[0]);
         });
+    } catch (error) {
+      setLoading(false);
+      console.error("Error fetching data:", error);
     }
+  }
+}, [city, searchData]);
 
-    // update date formating
-    setFormatedDate(dateBuilder(selectedDate));
-  }, [ city, searchData]);
 
   // Extract Selected Date
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
   };
 
+  // When user click enter then show data
   function updateSearchData() {
     setSearchData(Math.random());
   }
@@ -64,29 +70,25 @@ function Future({ city }) {
   return (
     <div className="mainPage">
       <div className="headingBox">
-        <h4>{formatedDate}</h4>
+        <h4>{dateBuilder(selectedDate)}</h4>
         <div>
           <input
             type="date"
             value={selectedDate}
             onChange={handleDateChange}
-            min={dateFormater(tomorrow)}
-            max={dateFormater(tomorrow)}
+            min={minDate}
+            max={maxDate}
           />
           <span onClick={updateSearchData}>Enter</span>
         </div>
       </div>
       <ForHero
-        city="jaipur"
-        country="India"
         temp={historyData?.day?.maxtemp_c}
         code={historyData?.day?.condition?.code}
-        tempValues={[
+        values={[
           { property: "Max.", value: `${historyData?.day?.maxtemp_c}°` },
           { property: "Avg.", value: `${historyData?.day?.avgtemp_c}°` },
           { property: "Min.", value: `${historyData?.day?.mintemp_c}°` },
-        ]}
-        values={[
           { property: "Humidity", value: `${historyData?.day?.avghumidity}%` },
           { property: "Visibility", value: `${historyData?.day?.avgvis_km}km` },
 

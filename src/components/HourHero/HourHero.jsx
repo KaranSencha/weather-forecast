@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./HourHero.module.css";
-import allCloudCondition from "../../assets/CloudCondition/allCloudCondition";
+import allCloudCondition from "../../assets/data/allCloudCondition";
 function HourHero({ city, country, temp, tempValues, code, values }) {
   const [imgUrl, setImgUrl] = useState("");
   const [cloudText, setCloudText] = useState("");

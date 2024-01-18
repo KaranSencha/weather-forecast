@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styles from "./Header.module.css";
 import apiKey from "../../helpers/apiKey";
-import search_icon from "../../assets/search.svg";
-import menu_icon from "../../assets/menu.svg";
+import search_icon from "../../assets/icon/search.svg";
+import menu_icon from "../../assets/icon/menu.svg";
 
 function Header({city, onCitySubmit, onMenuClicked }) {
   const [inputValue, setInputValue] = useState("");

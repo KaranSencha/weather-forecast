@@ -3,7 +3,7 @@ import styles from "./City.module.css";
 
 function City({ region, country, temp, imgUrl, onClick }) {
   const handleClick = () => {
-    onClick(`${region}, ${country}`); // Combine region and country to form the city name and pass it to the onClick function
+    onClick(`${region}, ${country}`); 
   };
 
   return (

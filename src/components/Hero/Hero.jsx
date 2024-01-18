@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Hero.module.css";
-import allCloudCondition from "../../assets/CloudCondition/allCloudCondition";
+import allCloudCondition from "../../assets/data/allCloudCondition";
 import moment from "moment-timezone";
 
 function Hero({ day, cityTimezone, temp, code, values }) {
