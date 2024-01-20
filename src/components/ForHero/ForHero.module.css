@@ -1,9 +1,9 @@
 .heroBox {
-
 	border-radius: 10px;
 	width: 80%;
 	margin: auto;
 	overflow-x: hidden;
+	margin-bottom: 30px;
 }
 
 .top {
@@ -31,19 +31,27 @@
 	justify-content: center;
 	align-items: center;
 	width: 50%;
+	position:relative;
 }
 
-.tempBox div {
+.hourTime {
+	position: absolute;
+	top: 10px;
+	left: 20px;
+	font-weight: 500;
+	color: #111;
+	font-size: 24px;
+}
+
+ .temp {
 	font-size: 75px;
 	font-weight: 600;
 	text-align: center;
 	color: #111;
-
-
 }
 
 .tempBox span {
-	font-size: 20px;
+	font-size: 28px;
 	color: #222;
 }
 

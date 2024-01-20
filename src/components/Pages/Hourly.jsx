@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import apiKey from "../../helpers/apiKey";
-import HourHero from "../HourHero/HourHero";
+import ForHero from "../ForHero/ForHero";
 import dateFormater from "../../helpers/dateFormater";
 import dateBuilder from "../../helpers/dateBuilder";
 dateFormater;
+import timeBuilder from "../../helpers/timeBuilder";
 function Hourly({ city }) {
   const [weather, setWeather] = useState({});
   const [hourlyData, setHourlyData] = useState([]);
@@ -99,24 +100,23 @@ function Hourly({ city }) {
 
         {hourlyData.map((hour, index) => {
           return (
-            <HourHero
+            <ForHero
               key={index}
-              city={city}
-              country="Japan"
+              day={hour?.is_day}
+              isHour={timeBuilder(hour?.time)}
               temp={hour?.temp_c}
               code={hour?.condition?.code}
-              tempValues={[
-                { property: "Heat", value: `${hour?.heatindex_c}°` },
-                { property: "Visib.", value: `${hour?.vis_km}` },
-                { property: "UV", value: `${hour?.uv}` },
-              ]}
               values={[
+                { property: "Heat", value: `${hour?.heatindex_c}°` },
+                { property: "Visibility", value: `${hour?.vis_km}` },
+                { property: "UV", value: `${hour?.uv}` },
                 { property: "Humidity", value: `${hour?.humidity}%` },
                 { property: "Wind Speed", value: `${hour?.wind_kph} km/h` },
-                { property: "Wind Direction", value: `${hour?.wind_dir}` },
-                { property: "Rain Chance", value: `${hour?.chance_of_rain} %` },
-                { property: "Cloud Cover", value: `${hour?.cloud} %` },
+                { property: "Wind Dir.", value: `${hour?.wind_dir}` },
+                { property: "Rain Chance", value: `${hour?.chance_of_rain}%` },
+                { property: "Cloud Cover", value: `${hour?.cloud}%` },
               ]}
+           
             />
           );
         })}

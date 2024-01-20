@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./ForHero.module.css";
 import allCloudCondition from "../../assets/data/allCloudCondition";
 
-function ForHero({ temp, tempValues, code, values }) {
+function ForHero({isHour, day, temp, code, values }) {
   const [imgUrl, setImgUrl] = useState("");
   const [cloudText, setCloudText] = useState("");
 
@@ -10,10 +10,29 @@ function ForHero({ temp, tempValues, code, values }) {
   useEffect(() => {
     const condition = allCloudCondition.find((item) => item.code === code);
     if (condition) {
-      setImgUrl(condition.imgId);
-      setCloudText(condition.text);
+      if (day === undefined) return;
+        if (day === 1) {
+          setImgUrl(condition.day.imgId);
+          setCloudText(condition.day.text);
+        } else {
+          setImgUrl(condition.night.imgId);
+          setCloudText(condition.night.text);
+        }
     }
   }, [code]);
+
+  function RenderHour() {
+    if (isHour) {
+      return <div className={styles.hourTime}>{isHour}</div>;
+    }
+  }
+  
+  function RenderContext() {
+    if (!isHour) {
+      return " avg.";
+    }
+
+  }
 
   return (
     <div className={styles.heroBox}>
@@ -21,9 +40,12 @@ function ForHero({ temp, tempValues, code, values }) {
       {/* top Box  */}
       <div className={styles.top}>
         <div className={styles.tempBox}>
-          <div>
-          {temp}<sup>°</sup>
-          <span>C avg.</span>
+         <RenderHour />
+          <div className={styles.temp}>
+            {temp}<sup>°</sup>
+            <span>C 
+              <RenderContext />
+          </span>
           </div>
         </div>
         <div className={styles.imgBox}>

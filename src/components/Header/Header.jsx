@@ -50,7 +50,6 @@ function Header({city, onCitySubmit, onMenuClicked }) {
     }
   }, [inputValue]);
 
-  // Api Current Weather Get
   // Input Cities Api Call
   useEffect(() => {
     if (city !== "") {
@@ -73,7 +72,7 @@ function Header({city, onCitySubmit, onMenuClicked }) {
         </div>
         {/* Check if city is not searched  */}
         {/* City Info  */}
-        {Object.keys(cityData).length !== 0 && (
+        {cityData.error?.code !== 1006 && Object.keys(cityData).length !== 0 && (
           <div className={styles.cityInfo}>
             <div className={styles.cityInfoName}>
               {cityData?.location.name}, {cityData?.location.region}

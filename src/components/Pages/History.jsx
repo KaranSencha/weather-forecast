@@ -4,8 +4,8 @@ import dateBuilder from "../../helpers/dateBuilder";
 import dateFormater from "../../helpers/dateFormater";
 import ForHero from "../ForHero/ForHero";
 import BoxItem from "../BoxItem/BoxItem";
-import sun_icon from "../../assets/sun.svg";
-import moon_icon from "../../assets/moon.svg";
+import sun_gif from "../../assets/gif/sun.gif";
+import moon_gif from "../../assets/gif/moon.gif";
 
 function History({ city }) {
   const [historyData, setHistoryData] = useState({});
@@ -102,7 +102,7 @@ useEffect(() => {
       <div className="boxItemContainer">
         <BoxItem
           heading="Sun Timing"
-          imgId={sun_icon}
+          imgId={sun_gif}
           values={[
             { property: "Rise", value: historyData?.astro?.sunrise },
             { property: "Set", value: historyData?.astro?.sunset },
@@ -110,7 +110,7 @@ useEffect(() => {
         />
         <BoxItem
           heading="Moon Timing"
-          imgId={moon_icon}
+          imgId={moon_gif}
           values={[
             { property: "Rise", value: historyData?.astro?.moonrise },
             { property: "Set", value: historyData?.astro?.moonset },

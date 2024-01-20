@@ -37,9 +37,7 @@ aside .active {
 .mainPage {
   width: 100%;
   padding: 30px 0;
-  background-image: url("./assets/nature.jpg");
-  background-repeat: repeat-y;
-  background-size: contain;
+  background-image: url("./assets/background/nature.jpg");
 }
 
 /* Cities Container  */
@@ -47,7 +45,7 @@ aside .active {
   width: 100%;
   min-height: calc(100vh - 70px);
   padding: 30px 0;
-  background-image: url("./assets/redcloudhalf.jpg");
+  background-image: url("./assets/background/redcloudhalf.jpg");
   background-repeat: repeat-y;
   background-size: contain;
 }
@@ -122,6 +120,16 @@ button {
   cursor: pointer;
 }
 
+.locationMap {
+  color: #222;
+  font-size: 22px;
+  width: 80%;
+  backdrop-filter: blur(10px);
+  padding: 5px 20px;
+  background-color: rgba(255, 255, 255, 0.455);
+  margin: auto;
+  margin-top: 20px;
+}
 /* Faq Page  */
 .faqPage {
   background-color: #111113;
@@ -255,6 +263,11 @@ button {
     width: 80%;
     text-align: center;
   }
+
+    .locationMap {
+      width: 90%;
+      font-size: 20px;
+    }
 }
 
 @media only screen and (max-width: 560px) {
@@ -267,6 +280,10 @@ button {
     width: 98%;
     font-size: 1.2rem;
     padding: 8px 10px;
+  }
+
+  .locationMap {
+    font-size: 19px;
   }
 }
 

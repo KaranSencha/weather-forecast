@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
 import Current from "../Pages/Current";
 import Hourly from "../Pages/Hourly";
@@ -12,23 +12,27 @@ import NoPage from "../Pages/NoPage";
 function Home({ city, onCitySubmit, menuVisibility }) {
   // Check which URL is currently active
   const location = useLocation();
+  const navigate = useNavigate();
   const isActive = (path) => {
     return location.pathname === path ? "active" : "";
   };
+  
+  // Redirect to the current page when the city changes
+  useEffect(() => {
+    navigate(location.pathname);
+  }, [onCitySubmit]);
 
   const renderContent = () => {
     if (isActive("/")) {
       return <Current city={city} onCitySubmit={onCitySubmit} />;
     } else if (isActive("/hourly")) {
-      return <Hourly city={city}  />;
+      return <Hourly city={city} />;
     } else if (isActive("/forecast")) {
-      return <Forecast city={city}  />;
-    }  else if (isActive("/future")) {
-      return <Future city={city}  />;
+      return <Forecast city={city} />;
+    } else if (isActive("/future")) {
+      return <Future city={city} />;
     } else if (isActive("/history")) {
       return <History city={city} />;
-    } else if (isActive("/air-quality")) {
-      return <Faq />;
     } else if (isActive("/faqs")) {
       return <Faq />;
     } else {
@@ -40,7 +44,7 @@ function Home({ city, onCitySubmit, menuVisibility }) {
     <>
       {/* Sidebar section */}
       <aside className={`${menuVisibility ? styles.hideMenu : ""}`}>
-        <Link to="/" className={isActive("/")}>
+        <Link to="/" className={isActive("/")} onClick={() => navigate(location.pathname)}>
           Today / Real Time
         </Link>
         <Link to="/hourly" className={isActive("/hourly")}>
@@ -54,9 +58,6 @@ function Home({ city, onCitySubmit, menuVisibility }) {
         </Link>
         <Link to="/history" className={isActive("/history")}>
           History
-        </Link>
-        <Link to="/air-quality" className={isActive("/air-quality")}>
-          Air Quality
         </Link>
         <Link to="/faqs" className={isActive("/faqs")}>
           FAQs

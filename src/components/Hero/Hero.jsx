@@ -24,15 +24,15 @@ function Hero({ day, cityTimezone, temp, code, values }) {
   useEffect(() => {
     const condition = allCloudCondition.find((item) => item.code === code);
     if (condition) {
-      setImgUrl(condition.imgId);
-      setCloudText(condition.text);
-    }
-
-    // Check Day or Night
-    if (day === 1) {
-      setDayText("Day is Active");
-    } else {
-      setDayText("Day is Active");
+      if (day === 1) {
+        setImgUrl(condition.day.imgId);
+        setCloudText(condition.day.text);
+        setDayText("Day is Active");
+      } else {
+        setImgUrl(condition.night.imgId);
+        setCloudText(condition.night.text);
+        setDayText("Night is Active");
+      }
     }
   }, [code]);
 
@@ -40,7 +40,7 @@ function Hero({ day, cityTimezone, temp, code, values }) {
     <div className={styles.heroBox}>
       <div className={styles.left}>
         <div className={styles.cityName}>{dayText}</div>
-        
+
         <div className={styles.tempBox}>
           {temp}
           <sup>°</sup>

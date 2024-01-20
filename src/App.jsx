@@ -29,28 +29,10 @@ function App() {
         />
         <Routes>
           <Route
-            path="/"
-            element={<Home city={city} onCitySubmit={handleCitySubmit} menuVisibility={menuShow} />}
-          />
-          <Route
-            path="/hourly"
-            element={<Home city={city} onCitySubmit={handleCitySubmit} menuVisibility={menuShow} />}
-          />
-          <Route
-            path="/faqs"
-            element={<Home city={city} onCitySubmit={handleCitySubmit} menuVisibility={menuShow} />}
-          />
-          <Route
-            path="/air-quality"
-            element={<Home city={city} onCitySubmit={handleCitySubmit} menuVisibility={menuShow} />}
-          />
-          <Route
             path="*"
             element={<Home city={city} onCitySubmit={handleCitySubmit} menuVisibility={menuShow} />}
           />
         </Routes>
-
-        {/* <Footer /> */}
       </BrowserRouter>
     </>
   );

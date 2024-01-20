@@ -17,6 +17,7 @@ function Forecast({ city }) {
   const [firstButton, setFirstButton] = useState("visible");
   const [lastButton, setLastButton] = useState("visible");
   const [dateValue, setDateValue] = useState("");
+  const [hour, setHour] = useState({});
 
   // Input Cities Api Call
   useEffect(() => {
@@ -34,7 +35,7 @@ function Forecast({ city }) {
           console.log(response);
         });
     }
-  }, [city]);
+  }, []);
 
   // Forecast data update
   useEffect(() => {
@@ -45,6 +46,7 @@ function Forecast({ city }) {
         if (index === forecastDay) {
           setForecastData(item);
           console.log(item);
+          setHour(item.hour[0]);
           const currentDate = new Date(item.date);
           setDateValue(dateBuilder(currentDate));
         }
@@ -98,7 +100,10 @@ function Forecast({ city }) {
           Next ❯
         </button>
       </div>
+
       <ForHero
+        day={hour?.is_day}
+        isHour={false}
         temp={forecastData?.day?.avgtemp_c}
         code={forecastData?.day?.condition?.code}
         values={[

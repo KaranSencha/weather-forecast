@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react'
-import apiKey from '../../helpers/apiKey';
-import airQuality from '../../helpers/airQuality';
+import React, { useState, useEffect } from "react";
+import apiKey from "../../helpers/apiKey";
+import airQuality from "../../helpers/airQuality";
 import City from "../City/City";
 import defaultCities from "../../assets/data/defaultCities";
 import Hero from "../Hero/Hero";
@@ -12,10 +12,12 @@ import rain_gif from "../../assets/gif/rain.gif";
 import wind_gif from "../../assets/gif/wind.gif";
 import speed_gif from "../../assets/gif/speed.gif";
 
-function Current({onCitySubmit, city}) {
+function Current({ onCitySubmit, city }) {
   const [citiesData, setCitiesData] = useState([]);
   const [weather, setWeather] = useState({});
   const [loading, setLoading] = useState(true);
+  const [location, setLocation] = useState({});
+  const storedCities = JSON.parse(localStorage.getItem("storedCities")) || defaultCities;
 
   const handleCityClick = (clickedCity) => {
     onCitySubmit(clickedCity);
@@ -23,6 +25,7 @@ function Current({onCitySubmit, city}) {
 
   // Input Cities Api Call
   useEffect(() => {
+    let error = false;
     if (city !== "") {
       setLoading(true);
       fetch(
@@ -31,8 +34,28 @@ function Current({onCitySubmit, city}) {
         .then((response) => response.json())
         .then((response) => {
           setWeather(response);
+          setLocation(response.location);
           setLoading(false);
           console.log(response);
+          if (response?.error?.code) {
+            error = true;
+          }
+          if (error) {
+            return;
+          } else {
+            let flag = false;
+            storedCities.forEach((item) => {
+              if (item.q.toLowerCase() === city.toLowerCase()) {
+                flag = true;
+              }
+            });
+
+            if (!flag && city.trim() !== "") {
+              storedCities.pop();
+              storedCities.unshift({ q: city });
+              localStorage.setItem("storedCities", JSON.stringify(storedCities));
+            }
+          }
         });
     }
   }, [city]);
@@ -49,7 +72,7 @@ function Current({onCitySubmit, city}) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ locations: defaultCities }),
+          body: JSON.stringify({ locations: storedCities }),
         });
 
         if (response.ok) {
@@ -68,7 +91,7 @@ function Current({onCitySubmit, city}) {
 
     // Run the effect only once when defaultCities changes
     fetchData();
-  }, [defaultCities]);
+  }, []);
 
   // Cities data not yet fetched
   if (citiesData.length === 0 || loading === true) {
@@ -79,6 +102,19 @@ function Current({onCitySubmit, city}) {
           <div></div>
           <div></div>
           <div></div>
+        </div>
+      </>
+    );
+  }
+
+  // Input City is invalid
+  if (weather?.error?.code === 1006) {
+    return (
+      <>
+        <div className="noPage">
+          <h2>Input city is not valid</h2>
+          <h1>City or Place is not found</h1>
+          <p>Sorry, we couldn’t find the place or city you’re looking for.</p>
         </div>
       </>
     );
@@ -198,10 +234,17 @@ function Current({onCitySubmit, city}) {
               ]}
             />
           </div>
+
+          {/* Location World Map  */}
+          <div className="locationMap">
+            {`World > ${location.tz_id.substring(0, location.tz_id.indexOf("/"))} > ${
+              location.country
+            } > ${location.region} > ${location.name}`}
+          </div>
         </div>
       </>
     );
   }
 }
 
-export default Current
+export default Current;
