@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
+import CityContext from "../../context/CityContext";
 import Current from "../Pages/Current";
 import Hourly from "../Pages/Hourly";
 import Forecast from "../Pages/Forecast";
@@ -9,22 +10,32 @@ import History from "../Pages/History";
 import Faq from "../Pages/Faq";
 import NoPage from "../Pages/NoPage";
 
-function Home({ city, onCitySubmit, menuVisibility }) {
+function Home() {
+  const { city, menu, setMenu } = useContext(CityContext);
+
   // Check which URL is currently active
   const location = useLocation();
   const navigate = useNavigate();
   const isActive = (path) => {
     return location.pathname === path ? "active" : "";
   };
-  
-  // Redirect to the current page when the city changes
+
+  // Redirect to Home when new city searched
   useEffect(() => {
-    navigate(location.pathname);
-  }, [onCitySubmit]);
+    navigate("/");
+    hideMenu();
+  }, [city]);
+
+  // Hide Menu in Smaller Screen
+  function hideMenu() {
+    if (window.innerWidth < 800) {
+      setMenu(true);
+    }
+  }
 
   const renderContent = () => {
     if (isActive("/")) {
-      return <Current city={city} onCitySubmit={onCitySubmit} />;
+      return <Current />;
     } else if (isActive("/hourly")) {
       return <Hourly city={city} />;
     } else if (isActive("/forecast")) {
@@ -43,27 +54,27 @@ function Home({ city, onCitySubmit, menuVisibility }) {
   return (
     <>
       {/* Sidebar section */}
-      <aside className={`${menuVisibility ? styles.hideMenu : ""}`}>
-        <Link to="/" className={isActive("/")} onClick={() => navigate(location.pathname)}>
+      <aside className={`${menu ? styles.hideMenu : ""}`}>
+        <Link to="/" className={isActive("/")} onClick={hideMenu}>
           Today / Real Time
         </Link>
-        <Link to="/hourly" className={isActive("/hourly")}>
+        <Link to="/hourly" className={isActive("/hourly")} onClick={hideMenu}>
           Hourly
         </Link>
-        <Link to="/forecast" className={isActive("/forecast")}>
+        <Link to="/forecast" className={isActive("/forecast")} onClick={hideMenu}>
           Forecast
         </Link>
-        <Link to="/future" className={isActive("/future")}>
+        <Link to="/future" className={isActive("/future")} onClick={hideMenu}>
           Future
         </Link>
-        <Link to="/history" className={isActive("/history")}>
+        <Link to="/history" className={isActive("/history")} onClick={hideMenu}>
           History
         </Link>
-        <Link to="/faqs" className={isActive("/faqs")}>
+        <Link to="/faqs" className={isActive("/faqs")}     onClick={hideMenu}>
           FAQs
         </Link>
       </aside>
-      <main className={`${menuVisibility ? styles.expandMain : ""}`}>{renderContent()}</main>
+      <main className={`${menu ? styles.expandMain : ""}`}>{renderContent()}</main>
     </>
   );
 }

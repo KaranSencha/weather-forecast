@@ -1,19 +1,26 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import styles from "./Header.module.css";
 import apiKey from "../../helpers/apiKey";
 import search_icon from "../../assets/icon/search.svg";
 import menu_icon from "../../assets/icon/menu.svg";
+import CityContext from "../../context/CityContext";
 
-function Header({city, onCitySubmit, onMenuClicked }) {
+function Header() {
+  const [cityData, setCityData] = useState({});
   const [inputValue, setInputValue] = useState("");
   const [suggestionData, setSuggestionData] = useState([]);
-  const [cityData, setCityData] = useState({});
+ 
+  const { city, setCity, setMenu } = useContext(CityContext);
 
+  // Toggle Menu 
+  function toggleMenu() {
+    setMenu((prev) => !prev);
+}
   // suggest city click handle
   const handleCityClick = (clickedCity) => {
     setSuggestionData([]);
     setInputValue("");
-    onCitySubmit(clickedCity);
+    setCity(clickedCity)
   };
 
   // Input
@@ -36,7 +43,7 @@ function Header({city, onCitySubmit, onMenuClicked }) {
         setInputValue("");
       }
     },
-    [inputValue, onCitySubmit]
+    [inputValue]
   );
 
   // Api for City Suggestion
@@ -66,7 +73,7 @@ function Header({city, onCitySubmit, onMenuClicked }) {
       {/* Header section */}
       <header>
         {/* Menu Icon  */}
-        <div className={styles.menuIcon} onClick={onMenuClicked}>
+        <div className={styles.menuIcon} onClick={toggleMenu}>
           <img src={menu_icon} alt="Menu Icon" />
           <div className={styles.logo}>Weather</div>
         </div>

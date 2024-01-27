@@ -35,7 +35,7 @@ function Forecast({ city }) {
           console.log(response);
         });
     }
-  }, []);
+  }, [city]);
 
   // Forecast data update
   useEffect(() => {

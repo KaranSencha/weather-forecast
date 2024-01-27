@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import apiKey from "../../helpers/apiKey";
 import airQuality from "../../helpers/airQuality";
 import City from "../City/City";
@@ -11,8 +11,10 @@ import moon_gif from "../../assets/gif/moon.gif";
 import rain_gif from "../../assets/gif/rain.gif";
 import wind_gif from "../../assets/gif/wind.gif";
 import speed_gif from "../../assets/gif/speed.gif";
+import CityContext from "../../context/CityContext";
 
-function Current({ onCitySubmit, city }) {
+function Current() {
+    const { city, setCity } = useContext(CityContext);
   const [citiesData, setCitiesData] = useState([]);
   const [weather, setWeather] = useState({});
   const [loading, setLoading] = useState(true);
@@ -20,7 +22,7 @@ function Current({ onCitySubmit, city }) {
   const storedCities = JSON.parse(localStorage.getItem("storedCities")) || defaultCities;
 
   const handleCityClick = (clickedCity) => {
-    onCitySubmit(clickedCity);
+    setCity(clickedCity);
   };
 
   // Input Cities Api Call

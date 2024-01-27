@@ -6,11 +6,13 @@ This is a simple weather website that provides users with current weather inform
 
 ## Features
 
-### 1. Current
-### 2. Hourly
-### 3. Forecast
-### 4. Future
-### 5. History
+### 1. Current Weather
+### 2. Hourly Weather
+### 3. Forecast Weather
+### 4. Future Weather
+### 5. History Weather
+### 6. Auto complete Cities
+### 7. Responsive
 
 
 
