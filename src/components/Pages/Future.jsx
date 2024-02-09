@@ -32,7 +32,6 @@ useEffect(() => {
         .then((response) => response.json())
         .then((response) => {
           setLoading(false);
-          console.log(response);
           setHistoryData(response.forecast.forecastday[0]);
         });
     } catch (error) {

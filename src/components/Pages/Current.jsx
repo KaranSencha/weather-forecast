@@ -14,7 +14,7 @@ import speed_gif from "../../assets/gif/speed.gif";
 import CityContext from "../../context/CityContext";
 
 function Current() {
-    const { city, setCity } = useContext(CityContext);
+  const { city, setCity } = useContext(CityContext);
   const [citiesData, setCitiesData] = useState([]);
   const [weather, setWeather] = useState({});
   const [loading, setLoading] = useState(true);
@@ -38,7 +38,6 @@ function Current() {
           setWeather(response);
           setLocation(response.location);
           setLoading(false);
-          console.log(response);
           if (response?.error?.code) {
             error = true;
           }
@@ -81,7 +80,7 @@ function Current() {
           const objectData = await response.json();
           setCitiesData(objectData.bulk);
           setLoading(false);
-          console.log(objectData.bulk);
+          // console.log(objectData.bulk);
         } else {
           const errorText = await response.text();
           console.log("Failed to fetch data:", errorText);

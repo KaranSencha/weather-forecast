@@ -1,5 +1,5 @@
 # Weather Forecast
-![Guess Number Image](./public/screenshot.png)
+![Weather Forecast Image](./public/screenshot.png)
 
 ## Description
 This is a simple weather website that provides users with current weather information for a specified location. It uses "Weather API" to fetch weather data and displays it in a user-friendly interface.

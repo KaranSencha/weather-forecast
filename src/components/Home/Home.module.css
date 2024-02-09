@@ -1,9 +1,9 @@
 /* Aside  */
 aside {
-	position: absolute;
+	position: fixed;
+	top: 70px;
 	left: 0;
 	bottom: 0;
-	top: 70px;
 	padding: 20px 0;
 	background-color: #18191B;
 	background-color: #202020;

@@ -32,7 +32,6 @@ function Forecast({ city }) {
         .then((response) => {
           setWeather(response);
           setLoading(false);
-          console.log(response);
         });
     }
   }, [city]);
@@ -45,7 +44,6 @@ function Forecast({ city }) {
       weather.forecast.forecastday.map((item, index) => {
         if (index === forecastDay) {
           setForecastData(item);
-          console.log(item);
           setHour(item.hour[0]);
           const currentDate = new Date(item.date);
           setDateValue(dateBuilder(currentDate));
